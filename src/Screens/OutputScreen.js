@@ -17,7 +17,7 @@ class OutputScreen extends Component {
 
   getData = () => {
     axios
-      .post("http://localhost:5000/matchSkills", {
+      .post("http://ecb619b8.ngrok.io/matchSkills", {
         mailId: "bhavya.y.mehta@gmail.com",
         password: "JOBScool5465",
         location: "Italy",
@@ -102,7 +102,7 @@ class OutputScreen extends Component {
               {/* <TypeWriterComp /> */}
             </div>
           ) : (
-            <div>
+            <div style={{ display: "contents" }}>
               <div
                 className="col-lg-5 col-md-6 col-sm-11"
                 style={{ flexBasis: 0, padding: 20 }}
