@@ -8,7 +8,7 @@ import Loading from "../Components/Loading";
 
 class OutputScreen extends Component {
   state = {
-    data: "hj",
+    data: "",
     skillsMatched: [],
     skillsNotMatched: [],
     loading: false,
