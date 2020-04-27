@@ -2,13 +2,13 @@
   --theme: #0b0c10;
   --darkshade: #1f2833;
   --text: #c5c6c7;
-  --border: #66fcf1;
-  --header: #45a29e;
+  --border: #69e781;
+  --header: #00af80;
 }
 
 .textInput {
   border: none;
-  border-bottom: 1px solid var(--border) !important;
+  border-bottom: 1px solid var(--header) !important;
   color: var(--text) !important;
   margin: 20px 0px !important;
   width: 100% !important;
@@ -28,4 +28,13 @@
 
 .anticon {
   vertical-align: 0.3em !important;
+}
+
+button:active {
+  outline: none;
+}
+
+button:focus {
+  outline: none;
+  background-color: var(--header);
 }

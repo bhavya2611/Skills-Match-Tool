@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Layout from "../Components/Layout";
-import event from "../Assets/event.png";
+import match from "../Assets/match.png";
 
 class SplashScreen extends Component {
   render() {
@@ -9,12 +9,12 @@ class SplashScreen extends Component {
       <Layout>
         <div className="centerContent" style={{ height: "100vh" }}>
           <div className="verticalContent">
-            <img alt="" src={event} style={{ height: "40vh" }} />
-            <div className="headerText">CLOUD SCHEDULER</div>
+            <img alt="" src={match} style={{ height: "40vh" }} />
+            <div className="headerText">Skill-Nalysis</div>
             <div
               className="linkText"
               style={{ cursor: "pointer" }}
-              onClick={() => this.props.history.push("/Schedule")}
+              onClick={() => this.props.history.push("/Info")}
             >
               Continue
             </div>

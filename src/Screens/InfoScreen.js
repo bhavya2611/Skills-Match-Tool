@@ -2,28 +2,25 @@ import React, { Component } from "react";
 import Layout from "../Components/Layout";
 import Header from "../Components/Header";
 import UserTextInput from "../Components/UserTextInput";
-import TimePickerComp from "../Components/TimePickerComp";
 
-class ScheduleScreen extends Component {
+class InfoScreen extends Component {
   state = {
     value: "",
-    cloudProvider: "",
-    serverName: "",
-    serverIp: "",
-    project: "",
-    startTime: "",
-    stopTime: "",
+    Email: "",
+    password: "",
+    role: "",
+    location: "",
   };
 
   changeTextInput = (element) => {
-    if (element.target.id === "cloudProvider") {
-      this.setState({ cloudProvider: element.target.value });
-    } else if (element.target.id === "serverName") {
-      this.setState({ serverName: element.target.value });
-    } else if (element.target.id === "serverIp") {
-      this.setState({ serverIp: element.target.value });
-    } else if (element.target.id === "project") {
-      this.setState({ project: element.target.value });
+    if (element.target.id === "Email") {
+      this.setState({ Email: element.target.value });
+    } else if (element.target.id === "password") {
+      this.setState({ password: element.target.value });
+    } else if (element.target.id === "role") {
+      this.setState({ role: element.target.value });
+    } else if (element.target.id === "location") {
+      this.setState({ location: element.target.value });
     }
   };
 
@@ -44,10 +41,10 @@ class ScheduleScreen extends Component {
       body: JSON.stringify({
         startTime: this.state.startTime,
         stopTime: this.state.stopTime,
-        serverName: this.state.serverName,
-        serverIP: this.state.serverIp,
-        cloudProvider: this.state.cloudProvider,
-        project: this.state.project,
+        password: this.state.password,
+        role: this.state.role,
+        Email: this.state.Email,
+        location: this.state.location,
       }),
     })
       .then(function (response) {
@@ -72,10 +69,10 @@ class ScheduleScreen extends Component {
                 style={{ flexBasis: 0 }}
               >
                 <UserTextInput
-                  ID={"cloudProvider"}
+                  ID={"Email"}
                   changeText={this.changeTextInput}
-                  placeholder="Cloud Provider"
-                  inputValue={this.state.cloudProvider}
+                  placeholder="Linked In Email Id"
+                  inputValue={this.state.Email}
                 />
               </div>
               <div
@@ -83,10 +80,10 @@ class ScheduleScreen extends Component {
                 style={{ flexBasis: 0 }}
               >
                 <UserTextInput
-                  ID={"serverName"}
+                  ID={"password"}
                   changeText={this.changeTextInput}
-                  inputValue={this.state.servverName}
-                  placeholder="Server Name"
+                  inputValue={this.state.password}
+                  placeholder="Linked In Password"
                 />
               </div>
               <div
@@ -94,10 +91,10 @@ class ScheduleScreen extends Component {
                 style={{ flexBasis: 0 }}
               >
                 <UserTextInput
-                  ID={"serverIp"}
+                  ID={"role"}
                   changeText={this.changeTextInput}
-                  inputValue={this.state.servverIp}
-                  placeholder="Server IP"
+                  inputValue={this.state.role}
+                  placeholder="Job Role"
                 />
               </div>
               <div
@@ -105,37 +102,18 @@ class ScheduleScreen extends Component {
                 style={{ flexBasis: 0 }}
               >
                 <UserTextInput
-                  ID={"project"}
+                  ID={"location"}
                   changeText={this.changeTextInput}
-                  inputValue={this.state.project}
-                  placeholder="Project / RG"
+                  inputValue={this.state.location}
+                  placeholder="Location"
                 />
-              </div>
-              <div
-                className="col-lg-6 col-md-6 col-sm-10"
-                style={{ flexBasis: 0, display: "flex" }}
-              >
-                <div className="col-6" style={{ margin: 0, padding: 0 }}>
-                  <TimePickerComp
-                    label={"Start Time"}
-                    timeValue={this.state.startTime}
-                    changeTime={this.changeStartTimeValue}
-                  />
-                </div>
-                <div className="col-6" style={{ margin: 0, padding: 0 }}>
-                  <TimePickerComp
-                    label={"Stop Time"}
-                    timeValue={this.state.stopTime}
-                    changeTime={this.changeStopTimeValue}
-                  />
-                </div>
               </div>
               <div
                 className="col-lg-6 col-md-6 col-sm-10"
                 style={{ flexBasis: 0, marginTop: "10vh", textAlign: "center" }}
               >
                 <button onClick={this.saveData} className="scheduleButton">
-                  Schedule
+                  Match
                 </button>
               </div>
             </div>
@@ -146,4 +124,4 @@ class ScheduleScreen extends Component {
   }
 }
 
-export default ScheduleScreen;
+export default InfoScreen;
