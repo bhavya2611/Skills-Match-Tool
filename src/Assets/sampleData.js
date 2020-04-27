@@ -1,4 +1,4 @@
-const data = {
+export const sampleData = {
   companies: {
     "0": "ANGULAR LEAD DEVELOPER ",
     "1": "Javascript Developer ",

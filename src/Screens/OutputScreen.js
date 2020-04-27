@@ -4,10 +4,14 @@ import Header from "../Components/Header";
 import SkillsDiv from "../Components/SkillsDiv";
 import axios from "axios";
 import Loading from "../Components/Loading";
+import { sampleData } from "../Assets/sampleData";
+
 
 class OutputScreen extends Component {
   state = {
-    data: "",
+    data: {},
+    skillsMatched: [],
+    skillsNotMatched: [],
     loading: false,
   };
 
@@ -19,9 +23,40 @@ class OutputScreen extends Component {
 
   componentDidMount = () => {
     //this.getData();
+    console.log(sampleData);
+
+    let topSkillsMatched = sampleData.skillsMatched;
+    topSkillsMatched.sort(function (a, b) {
+      return b.skillFrequency - a.skillFrequency
+    });
+
+    let topSkillsNotMatched = sampleData.skillsNotMatched;
+    topSkillsNotMatched.sort(function (a, b) {
+      return b.skillFrequency - a.skillFrequency
+    });
+
+    this.setState({ data: sampleData, skillsMatched: topSkillsMatched.slice(0, 5), skillsNotMatched: topSkillsNotMatched.slice(0, 5) });
+
+
+
   };
 
   render() {
+
+    let topFiveSkills = this.state.skillsMatched.map((skill, index) =>
+      <SkillsDiv key={index}
+        color={"#00af80"}
+        skillName={skill.skillName}
+        skillFrequency={skill.skillFrequency}
+      />)
+
+    let topFiveSkillsNotMatched = this.state.skillsNotMatched.map((skill, index) =>
+      <SkillsDiv key={index}
+        color={"#fb5151"}
+        skillName={skill.skillName}
+        skillFrequency={skill.skillFrequency}
+      />)
+
     return (
       <Layout>
         <div className="row">
@@ -50,77 +85,30 @@ class OutputScreen extends Component {
               {/* <TypeWriterComp /> */}
             </div>
           ) : (
-            <div>
-              <div
-                className="col-lg-5 col-md-6 col-sm-11"
-                style={{ flexBasis: 0, padding: 20 }}
-              >
-                <h4 className="skillsHeader">Skills Matched</h4>
-                <hr className="hrGreen" />
-                <div style={{ display: "flex", flexWrap: "wrap" }}>
-                  <SkillsDiv
-                    color={"#00af80"}
-                    skillName={"React.js"}
-                    skillFrequency={"10"}
-                  />
-                  <SkillsDiv
-                    color={"#00af80"}
-                    skillName={"JavaScript"}
-                    skillFrequency={"10"}
-                  />
-                  <SkillsDiv
-                    color={"#00af80"}
-                    skillName={"HTML"}
-                    skillFrequency={"10"}
-                  />
-                  <SkillsDiv
-                    color={"#00af80"}
-                    skillName={"CSS3"}
-                    skillFrequency={"10"}
-                  />
-                  <SkillsDiv
-                    color={"#00af80"}
-                    skillName={"MongoDB"}
-                    skillFrequency={"10"}
-                  />
+              <div>
+                <div
+                  className="col-lg-5 col-md-6 col-sm-11"
+                  style={{ flexBasis: 0, padding: 20 }}
+                >
+                  <h4 className="skillsHeader">Skills Matched</h4>
+                  <hr className="hrGreen" />
+                  <div style={{ display: "flex", flexWrap: "wrap" }}>
+                    {topFiveSkills}
+
+                  </div>
+                </div>
+                <div
+                  className="col-lg-5 col-md-6 col-sm-11"
+                  style={{ flexBasis: 0, padding: 20 }}
+                >
+                  <h4 className="skillsHeader">Skills Not Matched</h4>
+                  <hr className="hrGreen" />
+                  <div style={{ display: "flex", flexWrap: "wrap" }}>
+                    {topFiveSkillsNotMatched}
+                  </div>
                 </div>
               </div>
-              <div
-                className="col-lg-5 col-md-6 col-sm-11"
-                style={{ flexBasis: 0, padding: 20 }}
-              >
-                <h4 className="skillsHeader">Skills Not Matched</h4>
-                <hr className="hrGreen" />
-                <div style={{ display: "flex", flexWrap: "wrap" }}>
-                  <SkillsDiv
-                    color={"#fb5151"}
-                    skillName={"Redux"}
-                    skillFrequency={"10"}
-                  />
-                  <SkillsDiv
-                    color={"#fb5151"}
-                    skillName={"AWS"}
-                    skillFrequency={"10"}
-                  />
-                  <SkillsDiv
-                    color={"#fb5151"}
-                    skillName={"SQL Server"}
-                    skillFrequency={"10"}
-                  />
-                  <SkillsDiv
-                    color={"#fb5151"}
-                    skillName={"Skilled Labor"}
-                    skillFrequency={"10"}
-                  />
-                  <SkillsDiv
-                    color={"#fb5151"}
-                    skillName={"Software as a Service (SaaS)"}
-                    skillFrequency={"10"}
-                  />
-                </div>
-              </div>
-            </div>
-          )}
+            )}
         </div>
       </Layout>
     );
