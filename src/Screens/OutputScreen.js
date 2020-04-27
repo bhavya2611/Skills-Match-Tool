@@ -4,58 +4,70 @@ import Header from "../Components/Header";
 import SkillsDiv from "../Components/SkillsDiv";
 import axios from "axios";
 import Loading from "../Components/Loading";
-import { sampleData } from "../Assets/sampleData";
-
+// import { sampleData } from "../Assets/sampleData";
 
 class OutputScreen extends Component {
   state = {
-    data: {},
+    data: "",
     skillsMatched: [],
     skillsNotMatched: [],
     loading: false,
+    percentDone: 0,
   };
 
-  // getData = () => {
-  //   axios.get("http://d0f834da.ngrok.io/matchSkills").then((res) => {
-  //     console.log(res.data);
-  //   });
-  // };
+  getData = () => {
+    axios
+      .post("http://localhost:5000/matchSkills", {
+        mailId: "bhavya.y.mehta@gmail.com",
+        password: "JOBScool5465",
+        location: "Italy",
+        role: "JavaScript Developer",
+      })
+      .then((res) => {
+        console.log(res.data);
+        let sampleData = res.data;
+        let topSkillsMatched = sampleData.skillsMatched;
+        topSkillsMatched.sort(function (a, b) {
+          return b.skillFrequency - a.skillFrequency;
+        });
+
+        let topSkillsNotMatched = sampleData.skillsNotMatched;
+        topSkillsNotMatched.sort(function (a, b) {
+          return b.skillFrequency - a.skillFrequency;
+        });
+
+        this.setState({
+          data: sampleData,
+          skillsMatched: topSkillsMatched.slice(0, 5),
+          skillsNotMatched: topSkillsNotMatched.slice(0, 5),
+        });
+      });
+  };
 
   componentDidMount = () => {
-    //this.getData();
-    console.log(sampleData);
-
-    let topSkillsMatched = sampleData.skillsMatched;
-    topSkillsMatched.sort(function (a, b) {
-      return b.skillFrequency - a.skillFrequency
-    });
-
-    let topSkillsNotMatched = sampleData.skillsNotMatched;
-    topSkillsNotMatched.sort(function (a, b) {
-      return b.skillFrequency - a.skillFrequency
-    });
-
-    this.setState({ data: sampleData, skillsMatched: topSkillsMatched.slice(0, 5), skillsNotMatched: topSkillsNotMatched.slice(0, 5) });
-
-
-
+    this.getData();
   };
 
   render() {
-
-    let topFiveSkills = this.state.skillsMatched.map((skill, index) =>
-      <SkillsDiv key={index}
+    let topFiveSkills = this.state.skillsMatched.map((skill, index) => (
+      <SkillsDiv
+        key={index}
         color={"#00af80"}
         skillName={skill.skillName}
         skillFrequency={skill.skillFrequency}
-      />)
+      />
+    ));
 
-    let topFiveSkillsNotMatched = this.state.skillsNotMatched.map((skill, index) =>
-      <SkillsDiv key={index}
-        color={"#fb5151"}
-        skillName={skill.skillName}
-        skillFrequency={skill.skillFrequency}
-      />)
+    let topFiveSkillsNotMatched = this.state.skillsNotMatched.map(
+      (skill, index) => (
+        <SkillsDiv
+          key={index}
+          color={"#fb5151"}
+          skillName={skill.skillName}
+          skillFrequency={skill.skillFrequency}
+        />
+      )
+    );
 
     return (
       <Layout>
@@ -78,37 +90,41 @@ class OutputScreen extends Component {
                   height: "70vh",
                   display: "flex",
                   alignItems: "center",
+                  flexDirection: "column",
                 }}
               >
                 <Loading />
+                <h2 className="pageHeader">
+                  Loading
+                  {/* {this.state.percentDone}%.....DONE */}
+                </h2>
               </div>
               {/* <TypeWriterComp /> */}
             </div>
           ) : (
-              <div>
-                <div
-                  className="col-lg-5 col-md-6 col-sm-11"
-                  style={{ flexBasis: 0, padding: 20 }}
-                >
-                  <h4 className="skillsHeader">Skills Matched</h4>
-                  <hr className="hrGreen" />
-                  <div style={{ display: "flex", flexWrap: "wrap" }}>
-                    {topFiveSkills}
-
-                  </div>
-                </div>
-                <div
-                  className="col-lg-5 col-md-6 col-sm-11"
-                  style={{ flexBasis: 0, padding: 20 }}
-                >
-                  <h4 className="skillsHeader">Skills Not Matched</h4>
-                  <hr className="hrGreen" />
-                  <div style={{ display: "flex", flexWrap: "wrap" }}>
-                    {topFiveSkillsNotMatched}
-                  </div>
+            <div>
+              <div
+                className="col-lg-5 col-md-6 col-sm-11"
+                style={{ flexBasis: 0, padding: 20 }}
+              >
+                <h4 className="skillsHeader">Skills Matched</h4>
+                <hr className="hrGreen" />
+                <div style={{ display: "flex", flexWrap: "wrap" }}>
+                  {topFiveSkills}
                 </div>
               </div>
-            )}
+              <div
+                className="col-lg-5 col-md-6 col-sm-11"
+                style={{ flexBasis: 0, padding: 20 }}
+              >
+                <h4 className="skillsHeader">Skills Not Matched</h4>
+                <hr className="hrGreen" />
+                <div style={{ display: "flex", flexWrap: "wrap" }}>
+                  {topFiveSkillsNotMatched}
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </Layout>
     );

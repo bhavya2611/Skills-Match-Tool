@@ -7,7 +7,7 @@ class Loading extends Component {
       <div className="centerContent" style={{ height: "80vh" }}>
         <div className="verticalContent">
           <img alt="" src={loading} style={{ height: "40vh" }} />
-          <div className="headerText">Loading</div>
+          {/* <div className="headerText">Loading</div> */}
         </div>
       </div>
     );
