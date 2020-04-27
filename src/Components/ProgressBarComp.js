@@ -10,19 +10,21 @@ const ProgressBarComp = () => {
       <AnimatedProgressProvider
         valueStart={0}
         valueEnd={100}
-        duration={2}
+        duration={5}
         easingFunction={easeQuadInOut}
+        repeat
       >
         {(value) => {
           const roundedValue = Math.round(value);
           return (
             <CircularProgressbar
               value={value}
-              text={`${roundedValue}%`}
+              strokeWidth={5}
               styles={buildStyles({
                 pathTransition: "none",
                 textColor: "#00af80",
                 pathColor: "#00af80",
+                strokeLinecap: "butt",
               })}
             />
           );

@@ -14,6 +14,14 @@
   width: 100% !important;
 }
 
+.hrGreen {
+  border-top: 2px solid var(--text);
+}
+
+.skillsHeader {
+  color: var(--text);
+}
+
 .pageHeader {
   color: var(--header);
   text-align: center;
