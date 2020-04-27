@@ -5,16 +5,15 @@ import UserTextInput from "../Components/UserTextInput";
 
 class InfoScreen extends Component {
   state = {
-    value: "",
-    Email: "",
+    mailId: "",
     password: "",
     role: "",
     location: "",
   };
 
   changeTextInput = (element) => {
-    if (element.target.id === "Email") {
-      this.setState({ Email: element.target.value });
+    if (element.target.id === "mailId") {
+      this.setState({ mailId: element.target.value });
     } else if (element.target.id === "password") {
       this.setState({ password: element.target.value });
     } else if (element.target.id === "role") {
@@ -43,7 +42,7 @@ class InfoScreen extends Component {
         stopTime: this.state.stopTime,
         password: this.state.password,
         role: this.state.role,
-        Email: this.state.Email,
+        mailId: this.state.mailId,
         location: this.state.location,
       }),
     })
@@ -54,6 +53,19 @@ class InfoScreen extends Component {
         console.log(data);
       });
   };
+
+  redirectToResults = () => {
+
+    this.props.history.push({
+      pathname:"/Results",
+      loginInfo:{
+          ...this.state
+       }
+     });
+   
+  };
+
+
 
   render() {
     return (
@@ -69,10 +81,10 @@ class InfoScreen extends Component {
                 style={{ flexBasis: 0 }}
               >
                 <UserTextInput
-                  ID={"Email"}
+                  ID={"mailId"}
                   changeText={this.changeTextInput}
                   placeholder="Linked In Email Id"
-                  inputValue={this.state.Email}
+                  inputValue={this.state.mailId}
                 />
               </div>
               <div
@@ -112,7 +124,7 @@ class InfoScreen extends Component {
                 className="col-lg-6 col-md-6 col-sm-10"
                 style={{ flexBasis: 0, marginTop: "10vh", textAlign: "center" }}
               >
-                <button onClick={this.saveData} className="scheduleButton">
+                <button onClick={this.redirectToResults} className="scheduleButton">
                   Match
                 </button>
               </div>

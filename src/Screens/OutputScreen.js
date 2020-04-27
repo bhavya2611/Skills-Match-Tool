@@ -8,20 +8,18 @@ import Loading from "../Components/Loading";
 
 class OutputScreen extends Component {
   state = {
-    data: "",
+    data: "hj",
     skillsMatched: [],
     skillsNotMatched: [],
     loading: false,
     percentDone: 0,
   };
 
-  getData = () => {
+  getData = (loginInfo) => {
+    console.log({...loginInfo});
     axios
       .post("http://ecb619b8.ngrok.io/matchSkills", {
-        mailId: "bhavya.y.mehta@gmail.com",
-        password: "JOBScool5465",
-        location: "Italy",
-        role: "JavaScript Developer",
+        ...loginInfo
       })
       .then((res) => {
         console.log(res.data);
@@ -45,7 +43,8 @@ class OutputScreen extends Component {
   };
 
   componentDidMount = () => {
-    this.getData();
+    console.log(this.props.location.loginInfo);
+    this.getData(this.props.location.loginInfo);
   };
 
   render() {
