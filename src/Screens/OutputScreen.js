@@ -10,11 +10,11 @@ class OutputScreen extends Component {
     loading: false,
   };
 
-  getData = () => {
-    axios.get("http://d0f834da.ngrok.io/matchSkills").then((res) => {
-      console.log(res.data);
-    });
-  };
+  // getData = () => {
+  //   axios.get("http://d0f834da.ngrok.io/matchSkills").then((res) => {
+  //     console.log(res.data);
+  //   });
+  // };
 
   componentDidMount = () => {
     this.getData();
