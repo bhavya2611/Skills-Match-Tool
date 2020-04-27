@@ -1,14 +1,19 @@
 import React, { Component } from "react";
 import Layout from "../Components/Layout";
 import Header from "../Components/Header";
-import ProgressBarComp from "../Components/ProgressBarComp";
 import SkillsDiv from "../Components/SkillsDiv";
-// import TypeWriterComp from "../Components/TypeWriterComp";
+import axios from "axios";
 
 class OutputScreen extends Component {
   state = {
     data: "",
     loading: false,
+  };
+
+  getData = () => {
+    axios.get("http://d0f834da.ngrok.io/matchSkills").then((res) => {
+      console.log(res.data);
+    });
   };
 
   componentDidMount = () => {
@@ -39,7 +44,7 @@ class OutputScreen extends Component {
                   alignItems: "center",
                 }}
               >
-                <ProgressBarComp />
+                <h2 className="pageHeader">Loading ......</h2>
               </div>
               {/* <TypeWriterComp /> */}
             </div>

@@ -5,6 +5,7 @@
   "dependencies": {
     "@ant-design/icons": "^4.0.6",
     "antd": "^4.1.4",
+    "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "concurrently": "^5.2.0",
     "d3-ease": "^1.0.6",
