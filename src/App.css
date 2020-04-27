@@ -36,7 +36,7 @@
 .headerText {
   font-size: large;
   padding: 20px 0px;
-  color: var(--border);
+  color: var(--header);
   font-weight: bold;
   letter-spacing: 2px;
 }

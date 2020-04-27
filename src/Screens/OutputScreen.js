@@ -3,6 +3,7 @@ import Layout from "../Components/Layout";
 import Header from "../Components/Header";
 import SkillsDiv from "../Components/SkillsDiv";
 import axios from "axios";
+import Loading from "../Components/Loading";
 
 class OutputScreen extends Component {
   state = {
@@ -17,7 +18,7 @@ class OutputScreen extends Component {
   // };
 
   componentDidMount = () => {
-    this.getData();
+    //this.getData();
   };
 
   render() {
@@ -44,7 +45,7 @@ class OutputScreen extends Component {
                   alignItems: "center",
                 }}
               >
-                <h2 className="pageHeader">Loading ......</h2>
+                <Loading />
               </div>
               {/* <TypeWriterComp /> */}
             </div>
