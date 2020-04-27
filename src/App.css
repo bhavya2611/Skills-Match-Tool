@@ -1,0 +1,58 @@
+/* colors */
+:root {
+  --theme: #0b0c10;
+  --darkshade: #1f2833;
+  --text: #c5c6c7;
+  --border: #66fcf1;
+  --header: #45a29e;
+}
+
+.row {
+  margin: 0px;
+}
+
+.layout {
+  margin: 0px auto;
+  padding: 0px;
+  background-color: var(--theme);
+  padding-bottom: 5vh;
+  min-height: 100vh;
+}
+
+.centerContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+.verticalContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.headerText {
+  font-size: large;
+  padding: 20px 0px;
+  color: var(--border);
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.linkText {
+  font-size: medium;
+  text-decoration: underline;
+  text-decoration-color: var(--text);
+  color: var(--text);
+}
+
+.scheduleButton {
+  background-color: var(--header);
+  color: white;
+  padding: 10px 50px;
+  font-size: medium;
+  border: 1px solid var(--header);
+  border-radius: 5px;
+}

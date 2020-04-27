@@ -1,0 +1,49 @@
+{
+  "configs": [
+    {
+      "startTime": "08:00",
+      "stopTime": "18:00",
+      "serverName": "gcp",
+      "serverIP": "gcp",
+      "cloudProvider": "gcp",
+      "project": "gcp",
+      "id": 1
+    },
+    {
+      "startTime": "08:00",
+      "stopTime": "18:00",
+      "serverName": "gcp",
+      "serverIP": "gcp",
+      "cloudProvider": "gcp",
+      "project": "gcp",
+      "id": 2
+    },
+    {
+      "startTime": "08:00",
+      "stopTime": "18:00",
+      "serverName": "gcp",
+      "serverIP": "gcpp",
+      "cloudProvider": "gcpp",
+      "project": "gcpp",
+      "id": 3
+    },
+    {
+      "startTime": "2020-04-24T03:35:00.516Z",
+      "stopTime": "2020-04-23T23:35:00.227Z",
+      "serverName": "ABC",
+      "serverIP": "XYZ",
+      "cloudProvider": "GCP",
+      "project": "RQP",
+      "id": 4
+    },
+    {
+      "startTime": "2020-04-26T02:30:00.712Z",
+      "stopTime": "2020-04-26T13:30:00.838Z",
+      "serverName": "nonprodserver01",
+      "serverIP": "10.190.12.1",
+      "cloudProvider": "GCP",
+      "project": "it-development",
+      "id": 5
+    }
+  ]
+}

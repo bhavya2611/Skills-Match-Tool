@@ -1,0 +1,31 @@
+:root {
+  --theme: #0b0c10;
+  --darkshade: #1f2833;
+  --text: #c5c6c7;
+  --border: #66fcf1;
+  --header: #45a29e;
+}
+
+.textInput {
+  border: none;
+  border-bottom: 1px solid var(--border) !important;
+  color: var(--text) !important;
+  margin: 20px 0px !important;
+  width: 100% !important;
+}
+
+.pageHeader {
+  color: var(--header);
+  text-align: center;
+  padding: 20px;
+}
+
+.labelTime {
+  font-size: medium;
+  color: var(--text);
+  padding-right: 10px;
+}
+
+.anticon {
+  vertical-align: 0.3em !important;
+}
