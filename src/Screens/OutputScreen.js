@@ -21,7 +21,7 @@ class OutputScreen extends Component {
   getData = (loginInfo) => {
     console.log({ ...loginInfo });
     axios
-      .post("http://ecb619b8.ngrok.io/matchSkills", {
+      .post("http://46bdeba1.ngrok.io/matchSkills", {
         ...loginInfo,
       })
       .then((res) => {
@@ -109,9 +109,9 @@ class OutputScreen extends Component {
             </div>
           ) : (
             <div style={{ display: "contents" }}>
-              <h3 style={{ color: "#0a74ec" }}>
+              <h3 style={{ color: "#004390" }}>
                 {this.state.jobRole} - {this.state.jobLocation}
-                <h6>Score: {this.state.score}</h6>
+                <h6 style={{ color: "#0a74ec" }}>Score: {this.state.score}</h6>
               </h3>
               <hr className="hrGreen" />
               <div
