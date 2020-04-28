@@ -4,7 +4,7 @@ import Header from "../Components/Header";
 import SkillsDiv from "../Components/SkillsDiv";
 import axios from "axios";
 import Loading from "../Components/Loading";
-// import { sampleData } from "../Assets/sampleData";
+//import { sampleData } from "../Assets/sampleData";
 
 class OutputScreen extends Component {
   state = {
@@ -28,6 +28,7 @@ class OutputScreen extends Component {
         console.log(res.data);
         let sampleData = res.data;
         let topSkillsMatched = sampleData.skillsMatched;
+        let sumSkillsMatched = sampleData.skillsMatched.reduce((acc, val) => acc + val.skillFrequency, 0);
         topSkillsMatched.sort(function (a, b) {
           return b.skillFrequency - a.skillFrequency;
         });
@@ -36,7 +37,9 @@ class OutputScreen extends Component {
         topSkillsNotMatched.sort(function (a, b) {
           return b.skillFrequency - a.skillFrequency;
         });
-
+        let sumTotal = sampleData.skillsNotMatched.reduce((acc, val) => acc + val.skillFrequency, sumSkillsMatched);
+        console.log("sum not skills " + sumTotal);
+        this.setState({score: Math.ceil((sumSkillsMatched/sumTotal)*100)});
         this.setState({
           data: sampleData,
           skillsMatched: topSkillsMatched.slice(0, 5),
@@ -45,6 +48,32 @@ class OutputScreen extends Component {
       });
   };
 
+ /* getDummyData = (loginInfo) => {
+    console.log({ ...loginInfo });
+
+        let topSkillsMatched = sampleData.skillsMatched;
+        let sumSkillsMatched = sampleData.skillsMatched.reduce((acc, val) => acc + val.skillFrequency, 0);
+        console.log("sum skills " + sumSkillsMatched);
+        topSkillsMatched.sort(function (a, b) {
+          return b.skillFrequency - a.skillFrequency;
+        });
+
+        let topSkillsNotMatched = sampleData.skillsNotMatched;
+        topSkillsNotMatched.sort(function (a, b) {
+          return b.skillFrequency - a.skillFrequency;
+        });
+        let sumTotal = sampleData.skillsNotMatched.reduce((acc, val) => acc + val.skillFrequency, sumSkillsMatched);
+        console.log("sum not skills " + sumTotal);
+        this.setState({score: Math.ceil((sumSkillsMatched/sumTotal)*100)});
+        this.setState({
+          data: sampleData,
+          skillsMatched: topSkillsMatched.slice(0, 5),
+          skillsNotMatched: topSkillsNotMatched.slice(0, 5),
+        });
+  
+  };
+  */
+
   componentDidMount = () => {
     console.log(this.props.location.loginInfo);
     this.setState({
@@ -52,6 +81,7 @@ class OutputScreen extends Component {
       jobLocation: this.props.location.loginInfo.location,
     });
     this.getData(this.props.location.loginInfo);
+    //this.getDummyData(this.props.location.loginInfo);
   };
 
   render() {
