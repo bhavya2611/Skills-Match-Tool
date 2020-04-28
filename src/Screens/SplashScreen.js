@@ -10,7 +10,9 @@ class SplashScreen extends Component {
         <div className="centerContent" style={{ height: "100vh" }}>
           <div className="verticalContent">
             <img alt="" src={match} style={{ height: "40vh" }} />
-            <div className="headerText">Skill-Nalysis</div>
+            <div className="headerText">
+              <h2 className="pageHeader">Skill-Nalysis</h2>
+            </div>
             <div
               className="linkText"
               style={{ cursor: "pointer" }}

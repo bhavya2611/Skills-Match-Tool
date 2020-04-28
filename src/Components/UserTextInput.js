@@ -11,6 +11,7 @@ class UserTextInput extends Component {
           value={this.props.inputValue}
           placeholder={this.props.placeholder}
           onChange={this.props.changeText}
+          type={this.props.type ? this.props.type : "text"}
         />
       </div>
     );

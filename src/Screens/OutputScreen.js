@@ -13,13 +13,16 @@ class OutputScreen extends Component {
     skillsNotMatched: [],
     loading: false,
     percentDone: 0,
+    jobRole: "",
+    jobLocation: "",
+    score: "33%",
   };
 
   getData = (loginInfo) => {
-    console.log({...loginInfo});
+    console.log({ ...loginInfo });
     axios
       .post("http://ecb619b8.ngrok.io/matchSkills", {
-        ...loginInfo
+        ...loginInfo,
       })
       .then((res) => {
         console.log(res.data);
@@ -44,6 +47,10 @@ class OutputScreen extends Component {
 
   componentDidMount = () => {
     console.log(this.props.location.loginInfo);
+    this.setState({
+      jobRole: this.props.location.loginInfo.role,
+      jobLocation: this.props.location.loginInfo.location,
+    });
     this.getData(this.props.location.loginInfo);
   };
 
@@ -102,6 +109,11 @@ class OutputScreen extends Component {
             </div>
           ) : (
             <div style={{ display: "contents" }}>
+              <h3 style={{ color: "#0a74ec" }}>
+                {this.state.jobRole} - {this.state.jobLocation}
+                <h6>Score: {this.state.score}</h6>
+              </h3>
+              <hr className="hrGreen" />
               <div
                 className="col-lg-5 col-md-6 col-sm-11"
                 style={{ flexBasis: 0, padding: 20 }}

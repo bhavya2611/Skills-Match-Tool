@@ -55,17 +55,13 @@ class InfoScreen extends Component {
   };
 
   redirectToResults = () => {
-
     this.props.history.push({
-      pathname:"/Results",
-      loginInfo:{
-          ...this.state
-       }
-     });
-   
+      pathname: "/Results",
+      loginInfo: {
+        ...this.state,
+      },
+    });
   };
-
-
 
   render() {
     return (
@@ -96,6 +92,7 @@ class InfoScreen extends Component {
                   changeText={this.changeTextInput}
                   inputValue={this.state.password}
                   placeholder="Linked In Password"
+                  type="password"
                 />
               </div>
               <div
@@ -124,7 +121,10 @@ class InfoScreen extends Component {
                 className="col-lg-6 col-md-6 col-sm-10"
                 style={{ flexBasis: 0, marginTop: "10vh", textAlign: "center" }}
               >
-                <button onClick={this.redirectToResults} className="scheduleButton">
+                <button
+                  onClick={this.redirectToResults}
+                  className="scheduleButton"
+                >
                   Match
                 </button>
               </div>
