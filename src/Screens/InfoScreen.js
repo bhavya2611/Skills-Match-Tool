@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Layout from "../Components/Layout";
 import Header from "../Components/Header";
 import UserTextInput from "../Components/UserTextInput";
+import DropdownExperience from "../Components/DropdownExperience";
 
 class InfoScreen extends Component {
   state = {
@@ -9,6 +10,7 @@ class InfoScreen extends Component {
     password: "",
     role: "",
     location: "",
+    experience: "experience-2",
   };
 
   changeTextInput = (element) => {
@@ -20,6 +22,8 @@ class InfoScreen extends Component {
       this.setState({ role: element.target.value });
     } else if (element.target.id === "location") {
       this.setState({ location: element.target.value });
+    } else if (element.target.id === "experience") {
+      this.setState({ experience: element.target.value });
     }
   };
 
@@ -115,6 +119,16 @@ class InfoScreen extends Component {
                   changeText={this.changeTextInput}
                   inputValue={this.state.location}
                   placeholder="Location"
+                />
+              </div>
+              <div
+                className="col-lg-6 col-md-6 col-sm-10"
+                style={{ flexBasis: 0 }}
+              >
+                <DropdownExperience
+                  value={this.state.experience}
+                  handleChangeSelect={this.changeTextInput}
+                  ID={"experience"}
                 />
               </div>
               <div

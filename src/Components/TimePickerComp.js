@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { DatePicker } from "antd";
 import moment from "moment";
-import "antd/dist/antd.css";
+// import "antd/dist/antd.css";
 
 class TimePickerComp extends Component {
   render() {
