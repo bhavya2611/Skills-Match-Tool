@@ -9,6 +9,7 @@ class DropdownExperience extends Component {
           className="textInput"
           value={this.props.value}
           onChange={this.props.handleChangeSelect}
+          id={this.props.ID}
         >
           <option value="experience-1">Internship</option>
           <option value="experience-2">Entry Level</option>
