@@ -10,6 +10,7 @@ class DropdownExperience extends Component {
           value={this.props.value}
           onChange={this.props.handleChangeSelect}
           id={this.props.ID}
+          style={{ display: "block", backgroundColor: "#0b0c10", padding: 0 }}
         >
           <option value="experience-1">Internship</option>
           <option value="experience-2">Entry Level</option>
