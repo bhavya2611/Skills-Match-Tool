@@ -44,10 +44,9 @@ button:active {
 }
 
 button:focus {
-  outline: none;
   background-color: var(--header);
 }
 
-select:focus {
-  outline: none !important;
+*:focus {
+  outline: 0 !important;
 }

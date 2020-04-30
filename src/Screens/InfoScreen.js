@@ -101,25 +101,24 @@ class InfoScreen extends Component {
               </div>
               <div
                 className="col-lg-6 col-md-6 col-sm-10"
-                style={{ flexBasis: 0 }}
+                style={{ flexBasis: 0, display: "flex" }}
               >
-                <UserTextInput
-                  ID={"role"}
-                  changeText={this.changeTextInput}
-                  inputValue={this.state.role}
-                  placeholder="Job Role"
-                />
-              </div>
-              <div
-                className="col-lg-6 col-md-6 col-sm-10"
-                style={{ flexBasis: 0 }}
-              >
-                <UserTextInput
-                  ID={"location"}
-                  changeText={this.changeTextInput}
-                  inputValue={this.state.location}
-                  placeholder="Location"
-                />
+                <div style={{ flexBasis: 0, marginRight: 40, flex: 1 }}>
+                  <UserTextInput
+                    ID={"role"}
+                    changeText={this.changeTextInput}
+                    inputValue={this.state.role}
+                    placeholder="Job Role"
+                  />
+                </div>
+                <div style={{ flexBasis: 0, flex: 1 }}>
+                  <UserTextInput
+                    ID={"location"}
+                    changeText={this.changeTextInput}
+                    inputValue={this.state.location}
+                    placeholder="Location"
+                  />
+                </div>
               </div>
               <div
                 className="col-lg-6 col-md-6 col-sm-10"
@@ -133,7 +132,7 @@ class InfoScreen extends Component {
               </div>
               <div
                 className="col-lg-6 col-md-6 col-sm-10"
-                style={{ flexBasis: 0, marginTop: "10vh", textAlign: "center" }}
+                style={{ flexBasis: 0, marginTop: "7vh", textAlign: "center" }}
               >
                 <button
                   onClick={this.redirectToResults}
