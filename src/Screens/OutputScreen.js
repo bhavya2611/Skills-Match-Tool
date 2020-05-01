@@ -38,12 +38,19 @@ class OutputScreen extends Component {
   };
 
   componentDidMount = () => {
-    console.log(this.props.location.loginInfo);
-    this.getData(this.props.location.loginInfo);
-    this.setState({
-      jobLocation: this.props.location.loginInfo.location,
-      jobRole: this.props.location.loginInfo.role,
-    });
+    if (this.props.location.loginInfo == null) {
+      this.props.history.push(
+        "/Info"
+      );
+    }
+    else {
+      console.log(this.props.location);
+      this.getData(this.props.location.loginInfo);
+      this.setState({
+        jobLocation: this.props.location.loginInfo.location,
+        jobRole: this.props.location.loginInfo.role,
+      });
+    }
     /*let fetchedData = getDummyData(this.props.location.loginInfo);
 
     this.setState({
@@ -113,41 +120,41 @@ class OutputScreen extends Component {
               {/* <TypeWriterComp /> */}
             </div>
           ) : (
-            <div style={{ display: "contents" }}>
-              <div
-                className="col-lg-5 col-md-6 col-sm-11"
-                style={{ flexBasis: 0, padding: 20, paddingBottom: 0 }}
-              >
-                <h3 style={{ color: "#0a74ec" }}>
-                  {this.state.jobRole} - {this.state.jobLocation}
-                  <h6 style={{ color: "#0a74ec" }}>
-                    Score: {this.state.score}
-                  </h6>
-                </h3>
-                {/* <hr className="hrGreen" /> */}
-              </div>
-              <div
-                className="col-lg-5 col-md-6 col-sm-11"
-                style={{ flexBasis: 0, padding: 20, paddingBottom: 0 }}
-              >
-                <h4 className="skillsHeader">Skills Matched</h4>
-                <hr className="hrGreen" />
-                <div style={{ display: "flex", flexWrap: "wrap" }}>
-                  {topFiveSkills}
+              <div style={{ display: "contents" }}>
+                <div
+                  className="col-lg-5 col-md-6 col-sm-11"
+                  style={{ flexBasis: 0, padding: 20, paddingBottom: 0 }}
+                >
+                  <h3 style={{ color: "#0a74ec" }}>
+                    {this.state.jobRole} - {this.state.jobLocation}
+                    <h6 style={{ color: "#0a74ec" }}>
+                      Score: {this.state.score}
+                    </h6>
+                  </h3>
+                  {/* <hr className="hrGreen" /> */}
+                </div>
+                <div
+                  className="col-lg-5 col-md-6 col-sm-11"
+                  style={{ flexBasis: 0, padding: 20, paddingBottom: 0 }}
+                >
+                  <h4 className="skillsHeader">Skills Matched</h4>
+                  <hr className="hrGreen" />
+                  <div style={{ display: "flex", flexWrap: "wrap" }}>
+                    {topFiveSkills}
+                  </div>
+                </div>
+                <div
+                  className="col-lg-5 col-md-6 col-sm-11"
+                  style={{ flexBasis: 0, padding: 20, paddingBottom: 0 }}
+                >
+                  <h4 className="skillsHeader">Skills Not Matched</h4>
+                  <hr className="hrGreen" />
+                  <div style={{ display: "flex", flexWrap: "wrap" }}>
+                    {topFiveSkillsNotMatched}
+                  </div>
                 </div>
               </div>
-              <div
-                className="col-lg-5 col-md-6 col-sm-11"
-                style={{ flexBasis: 0, padding: 20, paddingBottom: 0 }}
-              >
-                <h4 className="skillsHeader">Skills Not Matched</h4>
-                <hr className="hrGreen" />
-                <div style={{ display: "flex", flexWrap: "wrap" }}>
-                  {topFiveSkillsNotMatched}
-                </div>
-              </div>
-            </div>
-          )}
+            )}
         </div>
       </Layout>
     );
