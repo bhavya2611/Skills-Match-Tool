@@ -37,7 +37,6 @@ class OutputScreen extends Component {
       });
   };
 
-
   componentDidMount = () => {
     console.log(this.props.location.loginInfo);
     this.getData(this.props.location.loginInfo);
@@ -73,7 +72,7 @@ class OutputScreen extends Component {
           color={"#fb5151"}
           skillName={skill.skillName}
           skillFrequency={skill.skillFrequency}
-          companyNames={"abcd,efgh,xyz,12345,nnasdad"}
+          companyNames={skill.company}
         />
       )
     );
