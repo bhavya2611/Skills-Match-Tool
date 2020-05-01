@@ -5,7 +5,7 @@ import SkillsDiv from "../Components/SkillsDiv";
 import axios from "axios";
 import Loading from "../Components/Loading";
 
-import { getDummyData } from "../Components/RequestHandler"
+import { getDummyData } from "../Components/RequestHandler";
 
 class OutputScreen extends Component {
   state = {
@@ -57,8 +57,6 @@ class OutputScreen extends Component {
       });
   };
 */
- 
-
 
   componentDidMount = () => {
     console.log(this.props.location.loginInfo);
@@ -73,7 +71,6 @@ class OutputScreen extends Component {
       skillsMatched: fetchedData.topSkillsMatched,
       skillsNotMatched: fetchedData.topSkillsNotMatched,
     });
-
   };
 
   render() {
@@ -83,6 +80,7 @@ class OutputScreen extends Component {
         color={"#00af80"}
         skillName={skill.skillName}
         skillFrequency={skill.skillFrequency}
+        companyNames={"abcd,efgh,xyz,12345,nnasdad"}
       />
     ));
 
@@ -93,6 +91,7 @@ class OutputScreen extends Component {
           color={"#fb5151"}
           skillName={skill.skillName}
           skillFrequency={skill.skillFrequency}
+          companyNames={"abcd,efgh,xyz,12345,nnasdad"}
         />
       )
     );

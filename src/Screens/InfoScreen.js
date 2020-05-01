@@ -9,8 +9,9 @@ class InfoScreen extends Component {
     mailId: "",
     password: "",
     role: "",
-    location: "",
+    location: "India",
     experience: "any",
+    err: "",
   };
 
   changeTextInput = (element) => {
@@ -25,46 +26,25 @@ class InfoScreen extends Component {
     } else if (element.target.id === "experience") {
       this.setState({ experience: element.target.value });
     }
-  };
-
-  changeStartTimeValue = (time) => {
-    this.setState({ startTime: time });
-  };
-
-  changeStopTimeValue = (time) => {
-    this.setState({ stopTime: time });
-  };
-
-  saveData = () => {
-    fetch("http://localhost:3004/configs", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        startTime: this.state.startTime,
-        stopTime: this.state.stopTime,
-        password: this.state.password,
-        role: this.state.role,
-        mailId: this.state.mailId,
-        location: this.state.location,
-      }),
-    })
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (data) {
-        console.log(data);
-      });
+    this.setState({ err: "" });
   };
 
   redirectToResults = () => {
-    this.props.history.push({
-      pathname: "/Results",
-      loginInfo: {
-        ...this.state,
-      },
-    });
+    if (
+      this.state.mailId !== "" &&
+      this.state.password !== "" &&
+      this.state.role !== "" &&
+      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.state.mailId)
+    ) {
+      this.props.history.push({
+        pathname: "/Results",
+        loginInfo: {
+          ...this.state,
+        },
+      });
+    } else {
+      this.state.err = "Please enter all fields correctly.";
+    }
   };
 
   render() {
@@ -134,6 +114,9 @@ class InfoScreen extends Component {
                 className="col-lg-6 col-md-6 col-sm-10"
                 style={{ flexBasis: 0, marginTop: "7vh", textAlign: "center" }}
               >
+                {this.state.err ? (
+                  <h5 style={{ color: "#fb5151" }}>{this.state.err}</h5>
+                ) : null}
                 <button
                   onClick={this.redirectToResults}
                   className="scheduleButton"
