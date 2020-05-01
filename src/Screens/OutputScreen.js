@@ -40,7 +40,10 @@ class OutputScreen extends Component {
   componentDidMount = () => {
     console.log(this.props.location.loginInfo);
     this.getData(this.props.location.loginInfo);
-
+    this.setState({
+      jobLocation: this.props.location.loginInfo.location,
+      jobRole: this.props.location.loginInfo.role,
+    });
     /*let fetchedData = getDummyData(this.props.location.loginInfo);
 
     this.setState({
