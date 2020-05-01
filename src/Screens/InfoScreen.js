@@ -10,7 +10,7 @@ class InfoScreen extends Component {
     password: "",
     role: "",
     location: "",
-    experience: "experience-2",
+    experience: "any",
   };
 
   changeTextInput = (element) => {
