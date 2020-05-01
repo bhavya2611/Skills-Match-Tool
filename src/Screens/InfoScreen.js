@@ -34,6 +34,7 @@ class InfoScreen extends Component {
       this.state.mailId !== "" &&
       this.state.password !== "" &&
       this.state.role !== "" &&
+      // eslint-disable-next-line
       /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.state.mailId)
     ) {
       this.props.history.push({
@@ -43,7 +44,7 @@ class InfoScreen extends Component {
         },
       });
     } else {
-      this.state.err = "Please enter all fields correctly.";
+      this.setState({ err: "Please enter all fields correctly." });
     }
   };
 

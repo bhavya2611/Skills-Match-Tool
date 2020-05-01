@@ -4,7 +4,7 @@ import Header from "../Components/Header";
 import SkillsDiv from "../Components/SkillsDiv";
 import axios from "axios";
 import Loading from "../Components/Loading";
-
+// eslint-disable-next-line
 import { getDummyData } from "../Components/RequestHandler";
 
 class OutputScreen extends Component {
