@@ -12,6 +12,9 @@ class DropdownExperience extends Component {
           id={this.props.ID}
           style={{ display: "block", backgroundColor: "#0b0c10", padding: 0 }}
         >
+          <option selected value="any">
+            Any
+          </option>
           <option value="experience-1">Internship</option>
           <option value="experience-2">Entry Level</option>
           <option value="experience-3">Associate</option>
