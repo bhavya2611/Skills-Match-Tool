@@ -22,7 +22,7 @@ class OutputScreen extends Component {
   getData = (loginInfo) => {
     console.log({ ...loginInfo });
     axios
-      .post("http://608058f7.ngrok.io", {
+      .post("http://608058f7.ngrok.io/matchSkills", {
         ...loginInfo,
       })
       .then((res) => {
