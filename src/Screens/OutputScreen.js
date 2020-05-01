@@ -19,49 +19,30 @@ class OutputScreen extends Component {
     score: "33%",
   };
 
-  /*getData = (loginInfo) => {
+  getData = (loginInfo) => {
     console.log({ ...loginInfo });
     axios
-      .post("http://46bdeba1.ngrok.io/matchSkills", {
+      .post("http://608058f7.ngrok.io", {
         ...loginInfo,
       })
       .then((res) => {
         console.log(res.data);
-        let sampleData = res.data;
-        let topSkillsMatched = sampleData.skillsMatched;
-        let sumSkillsMatched = sampleData.skillsMatched.reduce(
-          (acc, val) => acc + val.skillFrequency,
-          0
-        );
-        topSkillsMatched.sort(function (a, b) {
-          return b.skillFrequency - a.skillFrequency;
-        });
-
-        let topSkillsNotMatched = sampleData.skillsNotMatched;
-        topSkillsNotMatched.sort(function (a, b) {
-          return b.skillFrequency - a.skillFrequency;
-        });
-        let sumTotal = sampleData.skillsNotMatched.reduce(
-          (acc, val) => acc + val.skillFrequency,
-          sumSkillsMatched
-        );
-        console.log("sum not skills " + sumTotal);
+        let fetchedData = res.data;
         this.setState({
-          score: Math.ceil((sumSkillsMatched / sumTotal) * 100) + "%",
-        });
-        this.setState({
-          data: sampleData,
-          skillsMatched: topSkillsMatched.slice(0, 5),
-          skillsNotMatched: topSkillsNotMatched.slice(0, 5),
+          score: fetchedData.score,
+          data: fetchedData,
+          skillsMatched: fetchedData.topSkillsMatched,
+          skillsNotMatched: fetchedData.topSkillsNotMatched,
         });
       });
   };
-*/
+
 
   componentDidMount = () => {
     console.log(this.props.location.loginInfo);
+    this.getData(this.props.location.loginInfo);
 
-    let fetchedData = getDummyData(this.props.location.loginInfo);
+    /*let fetchedData = getDummyData(this.props.location.loginInfo);
 
     this.setState({
       score: fetchedData.score,
@@ -71,6 +52,7 @@ class OutputScreen extends Component {
       skillsMatched: fetchedData.topSkillsMatched,
       skillsNotMatched: fetchedData.topSkillsNotMatched,
     });
+    */
   };
 
   render() {
