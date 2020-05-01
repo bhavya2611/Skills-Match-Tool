@@ -80,7 +80,7 @@ class OutputScreen extends Component {
         color={"#00af80"}
         skillName={skill.skillName}
         skillFrequency={skill.skillFrequency}
-        companyNames={"abcd,efgh,xyz,12345,nnasdad"}
+        companyNames={skill.company}
       />
     ));
 

@@ -8,7 +8,12 @@ export function getDummyData(loginInfo) {
   let SkillsMatched = new Map();
 
   sampleData.forEach((jobs) => {
-    totalSkills = [...jobs.skills, ...totalSkills];
+    let skills = [];
+    jobs.skills.forEach((skill) =>{
+      skills.push(skill+"\n"+jobs.company);
+
+    })
+    totalSkills = [...skills, ...totalSkills];
   });
 
   console.log(totalSkills);
@@ -17,21 +22,22 @@ export function getDummyData(loginInfo) {
     console.log(skill.split("\n")[1]);
     const skillString = skill.split("\n")[1];
     const skillCondition = skill.split("\n")[0];
+    const skillCompany = skill.split("\n")[2];
     console.log(skillCondition);
     if (skillCondition == "Match") {
       if (SkillsMatched.has(skillString)) {
-        SkillsMatched.set(skillString, SkillsMatched.get(skillString) + 1);
+        SkillsMatched.set(skillString, { freq: SkillsMatched.get(skillString).freq + 1, company: SkillsMatched.get(skillString).company+","+skillCompany });
       } else {
-        SkillsMatched.set(skillString, 1);
+        SkillsMatched.set(skillString, {freq:1, company:skillCompany});
       }
     } else {
       if (SkillsNotMatched.has(skillString)) {
         SkillsNotMatched.set(
           skillString,
-          SkillsNotMatched.get(skillString) + 1
+         { freq: SkillsNotMatched.get(skillString).freq + 1, company: SkillsNotMatched.get(skillString).company+","+skillCompany  }
         );
       } else {
-        SkillsNotMatched.set(skillString, 1);
+        SkillsNotMatched.set(skillString,  {freq:1, company:[skillCompany]});
       }
     }
   });
@@ -40,7 +46,7 @@ export function getDummyData(loginInfo) {
   let SkillsMatchedArray = [];
   let SkillsNotMatchedArray = [];
   for (const [key, value] of SkillsMatched.entries()) {
-    SkillsMatchedArray.push({ skillName: key, skillFrequency: value });
+    SkillsMatchedArray.push({ skillName: key, skillFrequency: value.freq, company: value.company });
   }
 
   SkillsMatchedArray.sort(function (a, b) {
@@ -50,7 +56,7 @@ export function getDummyData(loginInfo) {
   console.log(SkillsMatchedArray);
 
   for (const [key, value] of SkillsNotMatched.entries()) {
-    SkillsNotMatchedArray.push({ skillName: key, skillFrequency: value });
+    SkillsNotMatchedArray.push({ skillName: key,  skillFrequency: value.freq, company: value.company  });
   }
 
   SkillsNotMatchedArray.sort(function (a, b) {
