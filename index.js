@@ -184,7 +184,7 @@ const getJobAnalysis = async (
         } else {
           SkillsNotMatched.set(skillString, {
             freq: 1,
-            company: [skillCompany],
+            company: skillCompany
           });
         }
       }

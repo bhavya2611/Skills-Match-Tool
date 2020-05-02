@@ -22,7 +22,7 @@ class OutputScreen extends Component {
   getData = (loginInfo) => {
     console.log({ ...loginInfo });
     axios
-      .post("http://608058f7.ngrok.io/matchSkills", {
+      .post("http://localhost:5000/matchSkills", {
         ...loginInfo,
       })
       .then((res) => {
@@ -137,16 +137,6 @@ class OutputScreen extends Component {
                 <hr className="hrGreen" />
                 <div style={{ display: "flex", flexWrap: "wrap" }}>
                   {topFiveSkills}
-                </div>
-                <div
-                  className="col-lg-5 col-md-6 col-sm-11"
-                  style={{ flexBasis: 0, padding: 20, paddingBottom: 0 }}
-                >
-                  <h4 className="skillsHeader">Skills Matched</h4>
-                  <hr className="hrGreen" />
-                  <div style={{ display: "flex", flexWrap: "wrap" }}>
-                    {topFiveSkills}
-                  </div>
                 </div>
                 <div
                   className="col-lg-5 col-md-6 col-sm-11"
