@@ -10,7 +10,9 @@ const getJobAnalysis = async (
   try {
     const browser = await puppeteer.launch({
       headless: true,
-      //args: ["--no-sandbox", "--disable-setuid-sandbox"],
+      defaultViewport: null,
+      executablePath:
+        "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe",
     });
     const page = await browser.newPage();
     await page.goto("https://www.linkedin.com/login");
@@ -184,7 +186,7 @@ const getJobAnalysis = async (
         } else {
           SkillsNotMatched.set(skillString, {
             freq: 1,
-            company: skillCompany
+            company: skillCompany,
           });
         }
       }
