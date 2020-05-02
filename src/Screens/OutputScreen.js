@@ -42,7 +42,7 @@ class OutputScreen extends Component {
       this.props.history.push("/Info");
     } else {
       console.log(this.props.location);
-      this.getData(this.props.location.loginInfo);
+     // getDummyData(this.props.location.loginInfo);
       this.setState({
         jobLocation: this.props.location.loginInfo.location,
         jobRole: this.props.location.loginInfo.role,
