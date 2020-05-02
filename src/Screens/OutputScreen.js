@@ -120,10 +120,8 @@ class OutputScreen extends Component {
               >
                 <h3 style={{ color: "#0a74ec" }}>
                   {this.state.jobRole} - {this.state.jobLocation}
-                  <h6 style={{ color: "#0a74ec" }}>
-                    Score: {this.state.score}
-                  </h6>
                 </h3>
+                <h6 style={{ color: "#0a74ec" }}>Score: {this.state.score}</h6>
                 {/* <hr className="hrGreen" /> */}
               </div>
               <div
