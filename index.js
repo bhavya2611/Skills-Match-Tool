@@ -9,9 +9,8 @@ const getJobAnalysis = async (
 ) => {
   try {
     const browser = await puppeteer.launch({
-      headless: true,
+      headless: false,
       defaultViewport: null,
-      slowMo: 1000,
       executablePath:
         "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe",
     });
@@ -44,40 +43,23 @@ const getJobAnalysis = async (
     const elementHandle = await page2.$(idSelector);
     await elementHandle.click();
     await elementHandle.focus();
-    await elementHandle.click({ clickCount: 3 });
+    await elementHandle.click({ clickCount: 5 });
     await elementHandle.press("Backspace");
     await elementHandle.type(location.toString());
-    await page2.click("button.jobs-search-box__submit-button");
+    await page2.keyboard.press("Enter");
     await page2.waitForNavigation();
     await page2.waitForSelector("button.artdeco-toggle__button");
-    await page2.waitForSelector("a.job-card-list__title");
+    await page2.waitForSelector("ul.jobs-search-results__list.artdeco-list");
     if (experienceValue !== "Any") {
-      await page2.waitForSelector(
-        "button[aria-controls='experience-level-facet-values']"
+      const url = await page2.url();
+      console.log(url);
+      page2.goto(
+        "https://www.linkedin.com/jobs/search/?f_E=4&geoId=103659918&location=Chennai%2C%20Tamil%20Nadu"
       );
-      await page2.click(
-        "button[aria-controls='experience-level-facet-values']"
-      );
-      await page2.waitForSelector("#" + experienceValue);
-      await page2.click("#" + experienceValue);
-      await page2.click("div.jobs-search-two-pane__wrapper");
-      await page2.waitForSelector("a.job-card-list__title");
     }
-    // await page2.waitForSelector(
-    //   "button[aria-controls='date-posted-facet-values']"
-    // );
-    // await page2.click("button[aria-controls='date-posted-facet-values']");
-    // await page2.evaluate(() => {
-    //   document.querySelector("#timePostedRange-r2592000").click();
-    // });
-    // await page2.click("div.jobs-search-two-pane__wrapper");
-    // await page2.waitForSelector("a.job-card-list__title");
 
-    let paginationDiv = await page2.$$(".artdeco-pagination");
-    while (paginationDiv.length === 0) {
-      await scrollToBottom(page2);
-      paginationDiv = await page2.$$(".artdeco-pagination");
-    }
+    await scrollToBottom(page2);
+    await scrollToBottom(page2);
 
     let jobsLink = await page2.$$eval("a.job-card-list__title", (am) =>
       am.filter((e) => e.href).map((e) => e.href)
@@ -86,6 +68,20 @@ const getJobAnalysis = async (
     let positionNames = await page2.$$eval("a.job-card-list__title", (am) =>
       am.filter((e) => e.innerText).map((e) => e.innerText)
     );
+
+    console.log(jobsLink);
+
+    if (jobsLink.length === 0) {
+      jobsLink = await page2.$$eval(
+        "h3.job-card-search__title > a.job-card-search__link-wrapper",
+        (am) => am.filter((e) => e.href).map((e) => e.href)
+      );
+
+      positionNames = await page2.$$eval(
+        "h3.job-card-search__title > a.job-card-search__link-wrapper",
+        (am) => am.filter((e) => e.innerText).map((e) => e.innerText)
+      );
+    }
 
     let companyNames = await page2.$$eval(
       "div.artdeco-entity-lockup__subtitle",
@@ -143,10 +139,10 @@ const getJobAnalysis = async (
       }
     }
 
-    await page2.close();
-    await browser.close();
+    // await page2.close();
+    // await browser.close();
 
-    console.log(responseObj);
+    //console.log(responseObj);
     let totalSkills = [];
     let SkillsNotMatched = new Map();
     let SkillsMatched = new Map();
@@ -159,14 +155,14 @@ const getJobAnalysis = async (
       totalSkills = [...skills, ...totalSkills];
     });
 
-    console.log(totalSkills);
+    //console.log(totalSkills);
 
     totalSkills.forEach((skill) => {
-      console.log(skill.split("\n")[1]);
+      //console.log(skill.split("\n")[1]);
       const skillString = skill.split("\n")[1];
       const skillCondition = skill.split("\n")[0];
       const skillCompany = skill.split("\n")[2];
-      console.log(skillCondition);
+      //console.log(skillCondition);
       if (skillCondition == "Match") {
         if (SkillsMatched.has(skillString)) {
           SkillsMatched.set(skillString, {
@@ -192,8 +188,8 @@ const getJobAnalysis = async (
         }
       }
     });
-    console.log(SkillsMatched);
-    console.log(SkillsNotMatched);
+    //console.log(SkillsMatched);
+    //console.log(SkillsNotMatched);
     let SkillsMatchedArray = [];
     let SkillsNotMatchedArray = [];
     for (const [key, value] of SkillsMatched.entries()) {
@@ -208,7 +204,7 @@ const getJobAnalysis = async (
       return b.skillFrequency - a.skillFrequency;
     });
 
-    console.log(SkillsMatchedArray);
+    //console.log(SkillsMatchedArray);
 
     for (const [key, value] of SkillsNotMatched.entries()) {
       SkillsNotMatchedArray.push({
@@ -222,7 +218,7 @@ const getJobAnalysis = async (
       return b.skillFrequency - a.skillFrequency;
     });
 
-    console.log(SkillsNotMatchedArray);
+    //console.log(SkillsNotMatchedArray);
 
     let sumSkillsMatched = SkillsMatchedArray.reduce(
       (acc, val) => acc + val.skillFrequency,
@@ -247,9 +243,9 @@ const getJobAnalysis = async (
 };
 
 async function scrollToBottom(page) {
-  const distance = 100; // should be less than or equal to window.innerHeight
+  const distance = 200; // should be less than or equal to window.innerHeight
   const delay = 100;
-  await page.waitForSelector("div.jobs-search-results > div");
+  await page.waitForSelector("div.jobs-search-results");
   while (
     await page.evaluate(
       () =>
