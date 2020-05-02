@@ -26,7 +26,7 @@ class SkillsDiv extends Component {
           {this.props.companyNames.split(",").map((name, index) => {
             return (
               <h5 style={{ color: "#c5c6c7" }}>
-                {index}. {name}
+                {index+1}. {name}
               </h5>
             );
           })}
