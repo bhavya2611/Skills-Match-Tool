@@ -22,8 +22,13 @@ class SkillsDiv extends Component {
           {this.props.skillName} - {this.props.skillFrequency}
         </div>
         <ReactTooltip id={this.props.skillName} aria-haspopup="true">
-          {this.props.companyNames.split(",").map((name,index) => {
-            return <h5 key={index} style={{ color: "#c5c6c7" }}>{name}</h5>;
+          <h5 style={{ color: "#0a74ec" }}>Companies</h5>
+          {this.props.companyNames.split(",").map((name, index) => {
+            return (
+              <h5 style={{ color: "#c5c6c7" }}>
+                {index}. {name}
+              </h5>
+            );
           })}
         </ReactTooltip>
       </div>

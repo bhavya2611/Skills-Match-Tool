@@ -17,14 +17,20 @@
     "react-move": "^6.1.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.1.1",
-    "react-tooltip": "^4.2.5"
+    "react-tooltip": "^4.2.5",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "puppeteer": "^2.1.1",
+    "puppeteer-core": "^2.1.1"
   },
   "scripts": {
+    "server": "node index.js",
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
-    "dev": "concurrently --kill-others \"react-app-rewired start\" \"json-server --watch db.json --port 3004\""
+    "dev": "concurrently --kill-others \"react-app-rewired start\" \"npm run server\""
   },
   "eslintConfig": {
     "extends": "react-app"
