@@ -11,6 +11,7 @@ const getJobAnalysis = async (
     const browser = await puppeteer.launch({
       headless: true,
       defaultViewport: null,
+      slowMo: 1000,
       executablePath:
         "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe",
     });
