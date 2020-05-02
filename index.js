@@ -53,9 +53,13 @@ const getJobAnalysis = async (
     if (experienceValue !== "Any") {
       const url = await page2.url();
       console.log(url);
+      let firstPart = url.split("?")[0];
+      let secondPart = url.split("?")[1];
+      let finalUrl = firstPart + "?f_E=" + experienceValue + "&" + secondPart;
       page2.goto(
-        "https://www.linkedin.com/jobs/search/?f_E="+experienceValue+"&geoId=103659918&location=Chennai%2C%20Tamil%20Nadu"
+        finalUrl
       );
+      
     }
 
     await scrollToBottom(page2);
