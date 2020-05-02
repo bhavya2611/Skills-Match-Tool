@@ -54,7 +54,7 @@ const getJobAnalysis = async (
       const url = await page2.url();
       console.log(url);
       page2.goto(
-        "https://www.linkedin.com/jobs/search/?f_E=4&geoId=103659918&location=Chennai%2C%20Tamil%20Nadu"
+        "https://www.linkedin.com/jobs/search/?f_E="+experienceValue+"&geoId=103659918&location=Chennai%2C%20Tamil%20Nadu"
       );
     }
 
