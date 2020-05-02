@@ -61,12 +61,16 @@ const getJobAnalysis = async (
     await scrollToBottom(page2);
     await scrollToBottom(page2);
 
-    let jobsLink = await page2.$$eval("a.job-card-list__title", (am) =>
-      am.filter((e) => e.href).map((e) => e.href)
+    // ("ul.jobs-search-results__list.artdeco-list > li > div > div > div > a");
+
+    let jobsLink = await page2.$$eval(
+      "ul.jobs-search-results__list.artdeco-list > li > div > div > div > a",
+      (am) => am.filter((e) => e.href).map((e) => e.href)
     );
 
-    let positionNames = await page2.$$eval("a.job-card-list__title", (am) =>
-      am.filter((e) => e.innerText).map((e) => e.innerText)
+    let positionNames = await page2.$$eval(
+      "ul.jobs-search-results__list.artdeco-list > li > div > div > div > a",
+      (am) => am.filter((e) => e.innerText).map((e) => e.innerText)
     );
 
     console.log(jobsLink);
