@@ -27,7 +27,7 @@ const getJobAnalysis = async (
     await page2.setCookie(...cookies);
     await page2.goto("https://www.linkedin.com/feed/");
     await page.close();
-    await page2.waitForSelector("input.search-global-typeahead__input");
+    //await page2.waitForSelector("input.search-global-typeahead__input");
     await page2.type(
       "input.search-global-typeahead__input",
       searchQuery.toString()
@@ -53,9 +53,9 @@ const getJobAnalysis = async (
     if (experienceValue !== "Any") {
       const url = await page2.url();
       console.log(url);
-      page2.goto(
-        "https://www.linkedin.com/jobs/search/?f_E="+experienceValue+"&geoId=103659918&location=Chennai%2C%20Tamil%20Nadu"
-      );
+      // page2.goto(
+      //   "https://www.linkedin.com/jobs/search/?f_E="+experienceValue+"&geoId=103659918&location=Chennai%2C%20Tamil%20Nadu"
+      // );
     }
 
     await scrollToBottom(page2);
@@ -235,6 +235,9 @@ const getJobAnalysis = async (
     let scoreTotal = Math.ceil((sumSkillsMatched / sumTotal) * 100) + "%";
 
     console.log("Done.....100%");
+    console.log([...SkillsMatchedArray.slice(0, 5)]);
+    console.log([...SkillsNotMatchedArray.slice(0, 5)]);
+    console.log(scoreTotal);
     return {
       topSkillsMatched: [...SkillsMatchedArray.slice(0, 5)],
       topSkillsNotMatched: [...SkillsNotMatchedArray.slice(0, 5)],
@@ -246,22 +249,22 @@ const getJobAnalysis = async (
   }
 };
 
-async function scrollToBottom(page) {
-  const distance = 200; // should be less than or equal to window.innerHeight
-  const delay = 100;
-  await page.waitForSelector("div.jobs-search-results");
+async function scrollToBottom(page3) {
+  const distance = 100; // should be less than or equal to window.innerHeight
+  const delay = 1000;
+  await page3.waitForSelector("div.jobs-search-results");
   while (
-    await page.evaluate(
+    await page3.evaluate(
       () =>
         document.querySelector("div.jobs-search-results").scrollTop +
           window.innerHeight <
         document.querySelector("div.jobs-search-results").scrollHeight
     )
   ) {
-    await page.evaluate((y) => {
+    await page3.evaluate((y) => {
       document.querySelector("div.jobs-search-results").scrollBy(0, y);
     }, distance);
-    await page.waitFor(delay);
+    await page3.waitFor(delay);
   }
 }
 
