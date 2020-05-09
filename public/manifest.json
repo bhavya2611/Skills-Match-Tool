@@ -1,6 +1,6 @@
 {
-  "short_name": "Cloud Scheduler",
-  "name": "Cloud Scheduler",
+  "short_name": "Skill-Nalysis",
+  "name": "Skill-Nalysis",
   "icons": [
     {
       "src": "favicon.ico",
@@ -18,7 +18,7 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
   "theme_color": "#0b0c10",
   "background_color": "#ffffff"

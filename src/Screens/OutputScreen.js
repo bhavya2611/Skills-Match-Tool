@@ -5,7 +5,7 @@ import SkillsDiv from "../Components/SkillsDiv";
 import axios from "axios";
 import Loading from "../Components/Loading";
 // eslint-disable-next-line
-import { getDummyData } from "../Components/RequestHandler";
+//import { getDummyData } from "../Components/RequestHandler";
 
 class OutputScreen extends Component {
   state = {
@@ -22,7 +22,7 @@ class OutputScreen extends Component {
   getData = (loginInfo) => {
     console.log({ ...loginInfo });
     axios
-      .post("http://730885ba.ngrok.io/matchSkills", {
+      .post("http://localhost:5000/matchSkills", {
         ...loginInfo,
       })
       .then((res) => {
